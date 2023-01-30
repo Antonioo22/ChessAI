@@ -1,21 +1,28 @@
+
+
+
+
 public class Piece {
-    private String color;
+    private PieceColor color;
     private String type;
-    public Piece(String color, String type) {
-        this.color = color;
-        this.type = type;
-    }
-    public String getColor() {
+
+    public PieceColor getColor() {
         return color;
     }
+    public Piece(PieceColor color){
+        this.color = color;
+    }
+
+    public void setColor(PieceColor color) {
+        this.color = color;
+    }
+
     public String getType() {
         return type;
     }
 
-    public interface ChessPiece {
-        boolean isValidMove(int x1, int y1, int x2, int y2);
-        boolean arePiecesInWay(int x1, int y1, int x2, int y2);
-
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

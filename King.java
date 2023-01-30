@@ -1,4 +1,4 @@
-public class King extends Piece implements Piece.ChessPiece {
+public class King extends Piece implements sPiece {
     public King(String color) {
         super(color, "King");
     }

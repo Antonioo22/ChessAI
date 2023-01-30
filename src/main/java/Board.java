@@ -9,30 +9,33 @@ public class Board {
         initialize();
     }
     private void initialize() {
-        gameBoard[0][4] = new Piece("white","King");
-        gameBoard[7][4] = new Piece("black","King");
-        gameBoard[0][0] = new Piece("white","Rook");
-        gameBoard[0][7] = new Piece("white","Rook");
-        gameBoard[7][0] = new Piece("black","Rook");
-        gameBoard[7][7] = new Piece("black","Rook");
-        gameBoard[0][2] = new Piece("white","Bishop");
-        gameBoard[0][5] = new Piece("white","Bishop");
-        gameBoard[7][2] = new Piece("black","Bishop");
-        gameBoard[7][5] = new Piece("black","Bishop");
-        gameBoard[0][1] = new Piece("white","Knight");
-        gameBoard[0][6] = new Piece("white","Knight");
-        gameBoard[7][1] = new Piece("black","Knight");
-        gameBoard[7][6] = new Piece("black","Knight");
-        gameBoard[0][3] = new Piece("white","Queen");
-        gameBoard[7][3] = new Piece("black","Queen");
+        gameBoard[7][4] = new King(PieceColor.BLACK);
+        gameBoard[0][4] = new King(PieceColor.WHITE);
+        gameBoard[0][0] = new Rook(PieceColor.WHITE);
+        gameBoard[0][7] = new Rook(PieceColor.WHITE);
+        gameBoard[7][0] = new Rook(PieceColor.BLACK);
+        gameBoard[7][7] = new Rook(PieceColor.BLACK);
+        gameBoard[0][2] = new Bishop(PieceColor.WHITE);
+        gameBoard[0][5] = new Bishop(PieceColor.WHITE);
+        gameBoard[7][2] = new Bishop(PieceColor.BLACK);
+        gameBoard[7][5] = new Bishop(PieceColor.BLACK);
+        gameBoard[0][1] = new Knight(PieceColor.WHITE);
+        gameBoard[0][6] = new Knight(PieceColor.WHITE);
+        gameBoard[7][1] = new Knight(PieceColor.BLACK);
+        gameBoard[7][6] = new Knight(PieceColor.BLACK);
+        gameBoard[0][3] = new Queen(PieceColor.WHITE);
+        gameBoard[7][3] = new Queen(PieceColor.BLACK);
         for (int i = 0; i < 8 ; i++) {
-            gameBoard [1][i] = new Piece("white","Pawn");
-            gameBoard[6][i] = new Piece("black","Pawn");
+            gameBoard [1][i] = new Pawn(PieceColor.WHITE);
+            gameBoard[6][i] = new Pawn(PieceColor.BLACK);
         }
 
+
+
     }
+
     public Piece getPiece (int x,int y){
-        return gameBoard[x][y];
+        return gameBoard[x][y]  ;
     }
     public void setPiece(int x, int y, Piece piece) {
         gameBoard[x][y] = piece;
@@ -43,26 +46,37 @@ public class Board {
         setPiece(x1, y1, null);
         return true;
     }
-    public void  showBoard(){
+    public void showBoard() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 Piece piece = gameBoard[i][j];
                 if (piece == null) {
-                    System.out.print(" [] ");
-                } else {
-                    System.out.print(piece.getType() + " ");
+                    System.out.print("<>");
+                } else if (piece instanceof King) {
+                    System.out.print("K ");
+                } else if (piece instanceof Rook) {
+                    System.out.print("R ");
+                } else if (piece instanceof Bishop) {
+                    System.out.print("B ");
+                } else if (piece instanceof Knight) {
+                    System.out.print("N ");
+                } else if (piece instanceof Queen) {
+                    System.out.print("Q ");
+                } else if (piece instanceof Pawn) {
+                    System.out.print("P ");
                 }
             }
             System.out.println();
         }
     }
-    public boolean isYourPieceOnSquare(int x, int y, String color) {
+    public boolean isYourPieceOnSquare(int x, int y, PieceColor color) {
         Piece piece = gameBoard[x][y];
-        if(piece != null && piece.getColor().equalsIgnoreCase(color)){
+        if(piece != null && piece.getColor().equals(color)){
             return true;
         }
         return false;
     }
+
 
 }
 
