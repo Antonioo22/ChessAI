@@ -81,4 +81,11 @@ public class King extends Piece implements CanMove {
         }
         return true;
     }
-}
+    public boolean canCastle(int x1, int y1, int x2, int y2, Board board) {
+        // Check if the King has moved before
+        if (hasMoved) {
+            return false;
+        }
+
+
+    }
