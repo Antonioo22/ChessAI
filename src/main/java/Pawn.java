@@ -52,4 +52,40 @@ public class Pawn extends Piece implements CanMove{
         // If the pawn is not moving diagonally or vertically, it is an invalid move
         return true;
     }
+    public Piece promotePawn(Piece pawn, PieceType promotion) {
+        // Check if the piece being passed in is actually a pawn
+        if (!(pawn instanceof Pawn)) {
+            throw new IllegalArgumentException("The piece being promoted must be a pawn.");
+        }
+
+        // Check if the promotion type is valid (e.g. not a king)
+        if (promotion == PieceType.KING) {
+            throw new IllegalArgumentException("A king cannot be promoted.");
+        }
+
+        // Create a new piece of the desired promotion type
+        Piece promotedPiece = null;
+        switch (promotion) {
+            case QUEEN:
+                promotedPiece = new Queen(pawn.getColor());
+                break;
+            case KNIGHT:
+                promotedPiece = new Knight(pawn.getColor());
+                break;
+            case ROOK:
+                promotedPiece = new Rook(pawn.getColor());
+                break;
+            case BISHOP:
+                promotedPiece = new Bishop(pawn.getColor());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid promotion type.");
+        }
+
+        // Replace the pawn with the promoted piece on the board
+        // (assuming a board array or something similar exists)
+        // board[pawn.getX()][pawn.getY()] = promotedPiece;
+
+        return promotedPiece;
+    }
 }
